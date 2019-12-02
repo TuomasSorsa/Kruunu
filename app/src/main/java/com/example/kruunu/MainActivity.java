@@ -19,15 +19,14 @@ public class MainActivity extends AppCompatActivity {
             getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putBoolean(KEY_IS_FIRST_TIME, false).commit();
         }
         else {
-            Intent intent = new Intent(this, mainMenu.class);
+            Intent intent = new Intent(this, MainMenu.class);
             startActivity(intent);
             finish();
         }*/
-        
     }
 
     public void startUserCreation (View v) {
-        Intent intent = new Intent(this, userCreation.class);
+        Intent intent = new Intent(this, UserCreation.class);
         startActivity(intent);
     }
 

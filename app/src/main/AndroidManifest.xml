@@ -9,12 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".userCreation"></activity>
-        <activity android:name=".infoMenu" />
-        <activity android:name=".optionsMenu" />
-        <activity android:name=".kalenteriMenu" />
-        <activity android:name=".pesuMenu" />
-        <activity android:name=".mainMenu" />
+        <activity android:name=".UserCreation"></activity>
+        <activity android:name=".InfoMenu" />
+        <activity android:name=".OptionsMenu" />
+        <activity android:name=".KalenteriMenu" />
+        <activity android:name=".PesuMenu" />
+        <activity android:name=".MainMenu" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

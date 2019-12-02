@@ -8,7 +8,7 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.EditText;
 
-public class userCreation extends AppCompatActivity {
+public class UserCreation extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,11 +19,15 @@ public class userCreation extends AppCompatActivity {
     }
 
     public void inputUserData (View v) {
-        AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
-        dlgAlert.setMessage("This is an alert with no consequence");
-        dlgAlert.setTitle("ERROR");
-        dlgAlert.setPositiveButton("OK", null);
-        dlgAlert.setCancelable(true);
-        dlgAlert.create().show();
+        /*for() {
+            if () {
+                AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+                dlgAlert.setMessage("Nimessä saa olla vain kirjaimia! (a-z, A-Z)");
+                dlgAlert.setTitle("ERROR");
+                dlgAlert.setPositiveButton("OK", null);
+                dlgAlert.setCancelable(true);
+                dlgAlert.create().show();
+            }
+        }*/
     }
 }
