@@ -5,6 +5,7 @@ public class User {
     private String name;
     private int streak;
     private int missed;
+    private String password;
 
     public User (String name, int age) {
         this.name = name;
@@ -29,6 +30,16 @@ public class User {
         int i = this.missed;
         this.missed = 0;
         return i;
+    }
+
+    public void setPassword (String password) {
+        this.password = password;
+    }
+
+    public boolean checkPassword (String password) {
+        if(password.equals(this.password)) {
+            return true;
+        } else { return false; }
     }
 
     public String getName() {

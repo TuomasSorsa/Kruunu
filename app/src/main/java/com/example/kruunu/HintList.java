@@ -14,4 +14,8 @@ public class HintList {
     private HintList() {
         hintList = new ArrayList<>();
     }
+
+    public List<Hint> getHintList () {
+        return hintList;
+    }
 }
