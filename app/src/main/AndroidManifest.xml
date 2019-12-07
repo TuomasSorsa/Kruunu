@@ -14,7 +14,8 @@
         <activity android:name=".OptionsMenu" />
         <activity android:name=".KalenteriMenu" />
         <activity android:name=".PesuMenu" />
-        <activity android:name=".MainMenu" />
+        <activity android:name=".MainMenu"
+            android:screenOrientation="sensorLandscape"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -14,7 +14,9 @@
         android:layout_marginLeft="40dp"
         android:layout_marginTop="36dp"
         android:ems="10"
-        android:hint="PIN"
+        android:hint="PIN (4 numeroa)"
+        android:maxLength="4"
+        android:digits="0123456789"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editName" />
@@ -39,7 +41,9 @@
         android:layout_marginLeft="40dp"
         android:layout_marginTop="372dp"
         android:ems="10"
-        android:hint="Nimi..."
+        android:hint="Nimi (vain kirjaimia)"
+        android:maxLength="15"
+        android:digits="abcdefghijklmnopqrstuvwxyzäöÅABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÅ"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

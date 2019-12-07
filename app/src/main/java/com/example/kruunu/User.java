@@ -7,10 +7,11 @@ public class User {
     private int missed;
     private String password;
 
-    public User (String name, int age) {
+    public User (String name, String password) {
         this.name = name;
         this.streak = 0;
         this.missed = 0;
+        this.password = password;
     }
 
     public void changeName(String newName) {
@@ -52,5 +53,9 @@ public class User {
 
     public int getMissed() {
         return this.missed;
+    }
+
+    public String getPassword() {
+        return this.password;
     }
 }
