@@ -1,13 +1,33 @@
 package com.example.kruunu;
 
 public class User {
+    private static final User ourInstance = new User();
+    private User mainUser;
 
     private String name;
     private int streak;
     private int missed;
     private String password;
 
-    public User (String name, String password) {
+    public static User getInstance() {
+        return ourInstance;
+    }
+
+    private User() {
+        this.name = "";
+        this.password = "1234";
+        this.missed = 0;
+        this.streak = 0;
+    }
+
+    public void inputUserDataLoad (String name, String password, int streak, int missed) {
+        this.name = name;
+        this.streak = streak;
+        this.missed = missed;
+        this.password = password;
+    }
+
+    public void inputUserDataFirst (String name, String password) {
         this.name = name;
         this.streak = 0;
         this.missed = 0;
