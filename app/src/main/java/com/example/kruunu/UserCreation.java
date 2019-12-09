@@ -47,12 +47,10 @@ public class UserCreation extends AppCompatActivity {
             return;
         }
 
-        boolean firstSetup = true;
         String name = editName.getText().toString(); String pincode = editPIN.getText().toString();
-        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putBoolean(KEY_IS_FIRST_TIME, false).apply();
+        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putBoolean(KEY_IS_FIRST_TIME, true).apply();
         Intent intent = new Intent(this, MainMenu.class);
-        intent.putExtra("FIRSTER", firstSetup);
-        intent.putExtra("USER.NAME", name);
+        intent.putExtra("USER_NAME", name);
         intent.putExtra("USER_PIN", pincode);
         startActivity(intent);
         MainActivity.activityA.finish();
