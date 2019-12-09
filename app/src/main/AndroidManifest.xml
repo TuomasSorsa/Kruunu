@@ -13,7 +13,8 @@
         <activity android:name=".InfoMenu" />
         <activity android:name=".OptionsMenu" />
         <activity android:name=".KalenteriMenu" />
-        <activity android:name=".PesuMenu" />
+        <activity android:name=".PesuMenu"
+            android:screenOrientation="sensorLandscape"/>
         <activity android:name=".MainMenu"
             android:screenOrientation="sensorLandscape"/>
         <activity android:name=".MainActivity">
