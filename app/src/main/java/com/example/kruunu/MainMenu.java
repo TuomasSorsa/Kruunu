@@ -15,7 +15,8 @@ public class MainMenu extends AppCompatActivity {
     static final String PIN = "com.Kruunu.User,PIN";
     static final String STREAK = "com.Kruunu.USER.Streak";
     static final String MISSES = "com.Kruunu.USER.Misses";
-    boolean check; TextView testaako;
+    static final String KEY_IS_FIRST_TIME = "com.Kruunu.first_time";
+    TextView testaako;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +24,10 @@ public class MainMenu extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
         Log.d("TAG", "Luotiinko uusi objekti?");
         Intent intent = getIntent();
-        check = intent.getExtras().getBoolean("FIRSTER");
         User.getInstance().inputUserDataFirst(intent.getStringExtra("USER.NAME"), intent.getStringExtra("USER_PIN"));
-        if(check == true) {
+        if(getSharedPreferences(KEY, Context.MODE_PRIVATE).getBoolean(KEY_IS_FIRST_TIME, false) == true) {
             FirstTime();
-        } else if (check == false) {
+        } else if (getSharedPreferences(KEY, Context.MODE_PRIVATE).getBoolean(KEY_IS_FIRST_TIME, false) == false) {
             LoadTime();
         } else {
             throw new IllegalArgumentException("Ei mitään käyttäjä tietoja / skippasit first time setupin, hakkeri!");
@@ -63,11 +63,13 @@ public class MainMenu extends AppCompatActivity {
     public void FirstTime () {
         testaako = findViewById(R.id.testiView);
         //User mainuser = new User(intent.getStringExtra("USER.NAME"), intent.getStringExtra("USER_PIN"));
+        User.getInstance().inputUserDataFirst(getIntent().getStringExtra("USER_NAME"), getIntent().getStringExtra("USER_PIN"));
+        testaako.setText(User.getInstance().getName() + "\n" + User.getInstance().getPassword() + "\n" + User.getInstance().getStreak() + "\n" + User.getInstance().getMissed());
         getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putString(NAME, User.getInstance().getName()).apply();
         getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt(MISSES, User.getInstance().getMissed()).apply();
         getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt(STREAK, User.getInstance().getStreak()).apply();
         getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putString(PIN, User.getInstance().getPassword()).apply();
-        //testaako.setText(User.getInstance().getName() + "\n" + User.getInstance().getPassword() + "\n" + User.getInstance().getStreak() + "\n" + User.getInstance().getMissed());
+        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putBoolean(KEY_IS_FIRST_TIME, false).apply();
     }
 
     public void LoadTime () {
@@ -78,10 +80,10 @@ public class MainMenu extends AppCompatActivity {
                 getSharedPreferences(KEY, Context.MODE_PRIVATE).getInt(STREAK,0),
                 getSharedPreferences(KEY, Context.MODE_PRIVATE).getInt(MISSES,0));
         testaako = findViewById(R.id.testiView);
-        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putString(NAME, User.getInstance().getName()).apply();
+        /*getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putString(NAME, User.getInstance().getName()).apply();
         getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt(MISSES, User.getInstance().getMissed()).apply();
         getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt(STREAK, User.getInstance().getStreak()).apply();
-        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putString(PIN, User.getInstance().getPassword()).apply();
+        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putString(PIN, User.getInstance().getPassword()).apply();*/
         testaako.setText(User.getInstance().getName() + "\n" + User.getInstance().getPassword() + "\n" +User.getInstance().getStreak() + "\n" + User.getInstance().getMissed());
     }
 }

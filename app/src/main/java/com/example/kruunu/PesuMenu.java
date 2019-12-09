@@ -2,6 +2,7 @@ package com.example.kruunu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -29,11 +30,12 @@ public class  PesuMenu extends AppCompatActivity {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 Toast.makeText(PesuMenu.this, "Hampaat pesty!", Toast.LENGTH_LONG).show();
+                suoritussiirto();
             }
         });
     }
 
-    @Override
+    /*@Override
     protected void onPause() {
         super.onPause();
         Stop();
@@ -64,5 +66,11 @@ public class  PesuMenu extends AppCompatActivity {
             pesuplayer.release();
             pesuplayer = null;
         }
+    }*/
+
+    public void suoritussiirto () {
+        Intent suoritus = new Intent(this, PesuSuoritus.class);
+        startActivity(suoritus);
+        finish();
     }
 }
