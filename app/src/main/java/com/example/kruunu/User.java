@@ -2,8 +2,6 @@ package com.example.kruunu;
 
 public class User {
     private static final User ourInstance = new User();
-    private User mainUser;
-
     private String name;
     private int streak;
     private int missed;
