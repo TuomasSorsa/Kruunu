@@ -26,6 +26,7 @@ public class  PesuMenu extends AppCompatActivity {
         MediaController mediaController = new MediaController(this);
         videoView.setMediaController(mediaController);
         mediaController.setAnchorView(videoView);
+        videoView.start();
         videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
