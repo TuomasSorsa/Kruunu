@@ -43,7 +43,7 @@
         android:ems="10"
         android:hint="Nimi (vain kirjaimia)"
         android:maxLength="15"
-        android:digits="abcdefghijklmnopqrstuvwxyzäöÅABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÅ"
+        android:digits="abcdefghijklmnopqrstuvwxyzäöåABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÅ"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

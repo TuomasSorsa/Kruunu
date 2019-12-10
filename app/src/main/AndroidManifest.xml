@@ -9,13 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UserCreation"></activity>
+        <activity android:name=".PesuSuoritus"
+            android:screenOrientation="sensorLandscape" ></activity>
+        <activity android:name=".UserCreation" />
         <activity android:name=".InfoMenu" />
         <activity android:name=".OptionsMenu" />
         <activity android:name=".KalenteriMenu" />
-        <activity android:name=".PesuMenu" />
-        <activity android:name=".MainMenu"
-            android:screenOrientation="sensorLandscape"/>
+        <activity
+            android:name=".PesuMenu"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".MainMenu"
+            android:screenOrientation="sensorLandscape" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
