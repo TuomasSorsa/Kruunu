@@ -72,6 +72,9 @@ public class User {
         this.missed = 0;
         this.password = password;
     }
+    public void inputUserName(String name){
+        this.name = name;
+    }
 
     /**
      * Used to change Username.

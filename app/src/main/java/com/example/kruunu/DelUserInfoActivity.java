@@ -56,6 +56,8 @@ public class DelUserInfoActivity extends AppCompatActivity {
                 getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putBoolean(KEY_IS_FIRST_TIME, false).clear().apply();
              //  SharedPreferences.Editor.clear();
                 dialog.hide();
+                Intent userCreation = new Intent(DelUserInfoActivity.this, UserCreation.class);
+                startActivity(userCreation);
             }
 
             });
