@@ -10,18 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ChangeNameActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="sensorLandscape"></activity>
         <activity android:name=".ChangeFontActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="sensorLandscape"/>
         <activity android:name=".DelUserInfoActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="sensorLandscape"/>
         <activity
             android:name=".PesuSuoritus"
             android:screenOrientation="sensorLandscape" />
         <activity android:name=".UserCreation" />
         <activity android:name=".InfoMenu" />
         <activity android:name=".OptionsMenu"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="sensorLandscape"/>
         <activity android:name=".KalenteriMenu" />
         <activity
             android:name=".PesuMenu"

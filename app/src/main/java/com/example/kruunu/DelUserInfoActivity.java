@@ -49,8 +49,13 @@ public class DelUserInfoActivity extends AppCompatActivity {
             mYes.setOnClickListener (new View.OnClickListener(){
             @Override
                 public void onClick(View v){
-                
-
+                getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putString(NAME, User.getInstance().getName()).clear().apply();
+                getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt(MISSES, User.getInstance().getMissed()).clear().apply();
+                getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt(STREAK, User.getInstance().getStreak()).clear().apply();
+                getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putString(PIN, User.getInstance().getPassword()).clear().apply();
+                getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putBoolean(KEY_IS_FIRST_TIME, false).clear().apply();
+             //  SharedPreferences.Editor.clear();
+                dialog.hide();
             }
 
             });
