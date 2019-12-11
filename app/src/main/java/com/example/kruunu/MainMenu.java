@@ -9,81 +9,105 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+/**
+ * MainMenu.java is Kruunu's MainMenu where all the app's functions & menus are accessible.
+ * MainMenu has four buttons that open the specific activities: PesuMenu, OhjeMenu, OptionsMenu, KalenteriMenu(not working).
+ * In the middle of the screen there is a image displayed. User streak decides what that picture is.
+ *
+ * @author Tuomas Sihvo
+ * @version 1.01
+ * @since 9.12.2019
+ */
 public class MainMenu extends AppCompatActivity {
+    /** SharedPreferences tag. */
     static final String KEY = "com.Kruunu";
+    /** SharedPreferences tag. */
     static final String NAME = "com.Kruunu.User.Name";
+    /** SharedPreferences tag. */
     static final String PIN = "com.Kruunu.User,PIN";
+    /** SharedPreferences tag. */
     static final String STREAK = "com.Kruunu.USER.Streak";
+    /** SharedPreferences tag. */
     static final String MISSES = "com.Kruunu.USER.Misses";
-    static final String KEY_IS_FIRST_TIME = "com.Kruunu.first_time";
+    /** TextView testaako used for testing / debugging. */
     TextView testaako;
 
+    /**
+     * Userdata is loaded from SharedPreferences and inputted to User.java singleton.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         Log.d("TAG", "Luotiinko uusi objekti?");
-        Intent intent = getIntent();
-        User.getInstance().inputUserDataFirst(intent.getStringExtra("USER.NAME"), intent.getStringExtra("USER_PIN"));
-        if(getSharedPreferences(KEY, Context.MODE_PRIVATE).getBoolean(KEY_IS_FIRST_TIME, false) == true) {
-            FirstTime();
-        } else if (getSharedPreferences(KEY, Context.MODE_PRIVATE).getBoolean(KEY_IS_FIRST_TIME, false) == false) {
-            LoadTime();
-        } else {
-            throw new IllegalArgumentException("Ei mitään käyttäjä tietoja / skippasit first time setupin, hakkeri!");
-        }
+        LoadTime();     // Load data method.
     }
 
+    /**
+     * onResume loads the Userdata from SharedPreferences and inputs it to User.Java singleton.
+     */
     @Override
     public void onResume() {
         super.onResume();
         Log.d("TAG", "Luotiinko uusi objekti?");
+        LoadTime();
     }
 
+    /**
+     * Opens KalenteriMenu activity.
+     * @param v Used for button onClick.
+     */
     public void KalenteriButton (View v) {
         Intent kalenteri = new Intent(this, KalenteriMenu.class);
         startActivity(kalenteri);
     }
 
+    /**
+     * Opens OptionsMenu activity.
+     * @param v Used for button onClick.
+     */
     public void OptionsButton (View v) {
         Intent options = new Intent(this, OptionsMenu.class);
         startActivity(options);
     }
 
+    /**
+     * Opens PesuMenu activity.
+     * @param v Used for button onClick.
+     */
     public void PesuButton (View v) {
         Intent pesu = new Intent(this, PesuMenu.class);
         startActivity(pesu);
     }
 
+    /**
+     * Opens OhjeMenu activity.
+     * @param v Used for button onClick.
+     */
     public void OhjeButton (View v) {
         Intent ohje = new Intent(this, InfoMenu.class);
         startActivity(ohje);
     }
 
-    public void FirstTime () {
-        testaako = findViewById(R.id.testiView);
-        //User mainuser = new User(intent.getStringExtra("USER.NAME"), intent.getStringExtra("USER_PIN"));
-        User.getInstance().inputUserDataFirst(getIntent().getStringExtra("USER_NAME"), getIntent().getStringExtra("USER_PIN"));
-        testaako.setText(User.getInstance().getName() + "\n" + User.getInstance().getPassword() + "\n" + User.getInstance().getStreak() + "\n" + User.getInstance().getMissed());
-        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putString(NAME, User.getInstance().getName()).apply();
-        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt(MISSES, User.getInstance().getMissed()).apply();
-        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt(STREAK, User.getInstance().getStreak()).apply();
-        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putString(PIN, User.getInstance().getPassword()).apply();
-        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putBoolean(KEY_IS_FIRST_TIME, false).apply();
-    }
+    /**
+     * Stores the current Userdata from User singleton to SharedPreferences.
+     * Stores KEY_IS_FIRST_TIME as false, to skip first time setup next time.
+     * Used when using the app first time.
+     * TextView testaako used for testing / debugging.
+     */
 
+
+    /**
+     * Loads Userdata from SharedPreferences and inputs it to User singleton.
+     * Used when the app has already completed the first time setup.
+     * TextView testaako used for testing / debugging.
+     */
     public void LoadTime () {
-        //User mainuser = new User(getSharedPreferences(KEY, Context.MODE_PRIVATE).getString(NAME,""),
-        //        getSharedPreferences(KEY, Context.MODE_PRIVATE).getString(PIN,"1234"));
-        User.getInstance().inputUserDataLoad(getSharedPreferences(KEY, Context.MODE_PRIVATE).getString(NAME,""),
+        User.getInstance().inputUserDataLoad(getSharedPreferences(KEY, Context.MODE_PRIVATE).getString(NAME,""),    // load userdata from SharedPreferences to User singleton.
                 getSharedPreferences(KEY, Context.MODE_PRIVATE).getString(PIN,"1234"),
                 getSharedPreferences(KEY, Context.MODE_PRIVATE).getInt(STREAK,0),
                 getSharedPreferences(KEY, Context.MODE_PRIVATE).getInt(MISSES,0));
         testaako = findViewById(R.id.testiView);
-        /*getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putString(NAME, User.getInstance().getName()).apply();
-        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt(MISSES, User.getInstance().getMissed()).apply();
-        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt(STREAK, User.getInstance().getStreak()).apply();
-        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putString(PIN, User.getInstance().getPassword()).apply();*/
         testaako.setText(User.getInstance().getName() + "\n" + User.getInstance().getPassword() + "\n" +User.getInstance().getStreak() + "\n" + User.getInstance().getMissed());
     }
 }
