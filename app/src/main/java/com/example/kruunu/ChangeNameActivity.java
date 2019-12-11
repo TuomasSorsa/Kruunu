@@ -41,16 +41,20 @@ public class ChangeNameActivity extends AppCompatActivity {
                 nBuilder.setView(mView);
                 final AlertDialog ndialog = nBuilder.create();
                 ndialog.show();
+
                 mYes.setOnClickListener (new View.OnClickListener(){
+                    EditText editName = findViewById(R.id.editName);
                     @Override
                     public void onClick(View v){
-                        EditText editName = findViewById(R.id.editName);
+
                         String name = editName.getText().toString();
+                        Intent intent = new Intent(ChangeNameActivity.this, OptionsMenu.class);       // Intent to MainMenu.java activity, putExtra USER_NAME & USER_PIN.
+                        startActivity(intent);
+                        MainActivity.activityA.finish();    // finish MainActivity.java activity.
                         finish();
+                    }
                         //User.getInstance().inputUserDataFirst(name);
 
-
-                    }
 
                 });
 
