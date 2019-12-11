@@ -16,7 +16,7 @@ import android.widget.TextView;
  *
  * @author Tuomas Sihvo
  * @version 1.01
- * @since 9.12.2019
+ * @since 11.12.2019
  */
 public class MainMenu extends AppCompatActivity {
     /** SharedPreferences tag. */

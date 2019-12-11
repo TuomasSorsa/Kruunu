@@ -2,7 +2,7 @@ package com.example.kruunu;
 
 /**
  * Singleton User is used to access / use the Userdata globally.
- * When the app starts, Userdata is loaded from SharedPreferences
+ * When MainMenu activity starts, Userdata is loaded from SharedPreferences
  * and inputted to User singleton, where it can be used for number of methods.
  */
 public class User {

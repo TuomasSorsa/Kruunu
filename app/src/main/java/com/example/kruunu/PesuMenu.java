@@ -11,14 +11,28 @@ import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+/**
+ * PesuMenu plays a tooth brushing video that shows proper "technique".
+ * After the video ends, PesuSuoritus activity is opened, where
+ * user confirms their brushing.
+ *
+ * @author Tuomas Sihvo
+ * @version 1.0
+ * @since 9.12.2019
+ */
 public class  PesuMenu extends AppCompatActivity {
     MediaPlayer pesuplayer;
 
+    /**
+     * onCreate creates MediaController & Uri for VideoView to play the video.
+     * The video starts automatically after the player is setup. The will last about
+     * 2 minutes and after it finishes; PesuSuoritus activity will be opened.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pesu_menu);
-        VideoView videoView = findViewById(R.id.videoPlayer);
+        VideoView videoView = findViewById(R.id.videoPlayer);   // Setting up the VideoPlayer / VideoView
         String videoPath = "android.resource://" + getPackageName() + "/" + R.raw.emotet;
         Uri uri = Uri.parse(videoPath);
         videoView.setVideoURI(uri);
@@ -26,12 +40,12 @@ public class  PesuMenu extends AppCompatActivity {
         MediaController mediaController = new MediaController(this);
         videoView.setMediaController(mediaController);
         mediaController.setAnchorView(videoView);
-        videoView.start();
-        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+        videoView.start();  // Starts the video automatically.
+        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {  // Listener for when the video finishes / ends.
             @Override
             public void onCompletion(MediaPlayer mp) {
-                Toast.makeText(PesuMenu.this, "Hampaat pesty!", Toast.LENGTH_LONG).show();
-                suoritussiirto();
+                Toast.makeText(PesuMenu.this, "Hampaat pesty!", Toast.LENGTH_LONG).show();  // Shows a popup message.
+                suoritussiirto();   // starts PesuSuoritus activity.
             }
         });
     }
@@ -69,6 +83,9 @@ public class  PesuMenu extends AppCompatActivity {
         }
     }*/
 
+    /**
+     * Starts PesuSuoritus.java activity.
+     */
     public void suoritussiirto () {
         Intent suoritus = new Intent(this, PesuSuoritus.class);
         startActivity(suoritus);
