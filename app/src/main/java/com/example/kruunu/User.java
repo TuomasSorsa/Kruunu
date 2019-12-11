@@ -17,6 +17,12 @@ public class User {
         this.missed = 0;
         this.streak = 0;
     }
+    public void clearUser(){
+        this.name = "";
+        this.password = "1234";
+        this.missed = 0;
+        this.streak = 0;
+    }
 
     public void inputUserDataLoad (String name, String password, int streak, int missed) {
         this.name = name;
