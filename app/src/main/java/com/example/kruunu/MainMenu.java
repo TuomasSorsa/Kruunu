@@ -108,6 +108,6 @@ public class MainMenu extends AppCompatActivity {
                 getSharedPreferences(KEY, Context.MODE_PRIVATE).getInt(STREAK,0),
                 getSharedPreferences(KEY, Context.MODE_PRIVATE).getInt(MISSES,0));
         testaako = findViewById(R.id.testiView);
-        testaako.setText(User.getInstance().getName() + "\n" + User.getInstance().getPassword() + "\n" +User.getInstance().getStreak() + "\n" + User.getInstance().getMissed());
+        //testaako.setText(User.getInstance().getName() + "\n" + User.getInstance().getPassword() + "\n" +User.getInstance().getStreak() + "\n" + User.getInstance().getMissed());
     }
 }

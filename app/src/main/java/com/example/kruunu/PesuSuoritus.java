@@ -31,7 +31,7 @@ public class PesuSuoritus extends AppCompatActivity {
 
     /**
      * Prevents user from accidentally exiting the activity with back button.
-     * Only way to exit the activity is to use 'public void vahvistus'.
+     * Only way to exit the activity is to use 'public void vahvistus' (click the button).
      */
     @Override
     public void onBackPressed() {

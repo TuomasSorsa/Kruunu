@@ -33,7 +33,7 @@ public class  PesuMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pesu_menu);
         VideoView videoView = findViewById(R.id.videoPlayer);   // Setting up the VideoPlayer / VideoView
-        String videoPath = "android.resource://" + getPackageName() + "/" + R.raw.emotet;
+        String videoPath = "android.resource://" + getPackageName() + "/" + R.raw.toothbrush;
         Uri uri = Uri.parse(videoPath);
         videoView.setVideoURI(uri);
 
