@@ -30,7 +30,6 @@ public class HintFragment extends Fragment {
         textView = view.findViewById(R.id.hintTextView);
         String message = getArguments().getString("message");
         textView.setText(message);
-        //textView.setText(HintList.getInstance().getHintList().get(i).getContent());
         return view;
     }
 

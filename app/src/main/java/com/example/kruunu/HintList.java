@@ -3,14 +3,34 @@ package com.example.kruunu;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * HintList.java is a Singleton class which is used to store washing tips inside an ArrayList.
+ * HintList is used in HintFragmentCollectionAdapter.java
+ *
+ * @author Jan-Mikael Martin
+ * @version 4.20
+ * @since 12.12.2019
+ */
+
 public class HintList {
+    /** ourInstance*/
     private static final HintList ourInstance = new HintList();
+    /** List for storing hints.*/
     private List<Hint> hintList;
 
+
+    /**
+     * Used to getInstance.
+     * @return HintList Singleton
+     */
     public static HintList getInstance() {
         return ourInstance;
     }
 
+    /**
+     * Creates the HintList singleton.
+     * Creates new ArrayList and adds washing tips into the ArrayList.
+     */
     private HintList() {
         hintList = new ArrayList<>();
         hintList.add(new Hint("Milloin pestä hampaat?", "Pese hampaat huolellisesti 2 kertaa päivässä aamulla ja illalla."));
@@ -23,6 +43,10 @@ public class HintList {
 
     }
 
+    /**
+     * Returns ArrayList hintList
+     * @return hintList ArrayList
+     */
     public List<Hint> getHintList () {
         return hintList;
     }
