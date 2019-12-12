@@ -10,22 +10,37 @@
         android:id="@+id/btnChangeName"
         android:layout_width="120dp"
         android:layout_height="60dp"
-        android:layout_marginTop="29dp"
-        android:layout_marginEnd="304dp"
-        android:layout_marginRight="304dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="316dp"
+        android:layout_marginRight="316dp"
+        android:onClick="changeName"
         android:text="Vaihda nimi"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userNimi" />
+        app:layout_constraintTop_toBottomOf="@+id/editName" />
 
     <TextView
+        android:textSize="15dp"
+        android:textStyle="bold"
         android:id="@+id/userNimi"
-        android:layout_width="212dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="260dp"
-        android:layout_marginRight="260dp"
-        android:gravity="center"
+        android:layout_width="59dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="347dp"
+        android:layout_marginRight="347dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editName"
+        android:layout_width="213dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="272dp"
+        android:layout_marginRight="272dp"
+        android:ems="10"
+        android:hint="Nimi (vain kirjaimia)"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userNimi" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

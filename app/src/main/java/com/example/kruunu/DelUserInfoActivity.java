@@ -26,18 +26,14 @@ public class DelUserInfoActivity extends AppCompatActivity {
 
         Button mShowDialog = (Button) findViewById(R.id.btnDelUser);
         mShowDialog.setOnClickListener(new View.OnClickListener() {
-            public void enHalua(View view){
 
-                Intent previousActivity = new Intent(DelUserInfoActivity.this, OptionsMenu.class);
-                startActivity(previousActivity);
-            }
             @Override
             public void onClick(View view) {
+
+
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(DelUserInfoActivity.this);
                 View mView = getLayoutInflater().inflate(R.layout.dialog_question, null);
                 Button mYes = (Button) mView.findViewById(R.id.btnYes);
-
-
 
             mBuilder.setView(mView);
             final AlertDialog dialog = mBuilder.create();
@@ -45,31 +41,19 @@ public class DelUserInfoActivity extends AppCompatActivity {
             mYes.setOnClickListener (new View.OnClickListener(){
             @Override
                 public void onClick(View v){
+                dialog.dismiss();
                 SharedPreferences settings = getSharedPreferences(KEY, Context.MODE_PRIVATE);
                 settings.edit().clear().commit();
-                dialog.dismiss();
                 Intent i = new Intent(DelUserInfoActivity.this,MainActivity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                finish();
                 startActivity(i);
-                /*Intent userCreation = new Intent(this, MainActivity.class);
-                startActivity(userCreation);*/
+
             }
             });
-
             }
     });
-
-
-
-
-    /*public void resetPrefs(View view) {
-        SharedPreferences prefGet = getSharedPreferences("sharedPref" , MODE_PRIVATE);
-        SharedPreferences.Editor prefEditor = prefGet.edit();
-        prefEditor.clear();
-        prefEditor.apply();
-
-    }*/
     /*
 
     /*public void testiNappi(View view){
@@ -95,8 +79,5 @@ public class DelUserInfoActivity extends AppCompatActivity {
     public void enHalua(View view){
         Intent previousActivity = new Intent(DelUserInfoActivity.this, OptionsMenu.class);
         startActivity(previousActivity);
-    }
-    public static Activity getInstance(){ // Method says it's never used, but this let's you use MainActivity.activityA.finish in other activities();
-        return activityD;
     }
 }
