@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * PesuSuoritus congratulates the User for completing their brushing and confirms it.
@@ -21,12 +24,17 @@ public class PesuSuoritus extends AppCompatActivity {
     static final String KEY = "com.Kruunu";
     /** SharedPreferences tag. */
     static final String STREAK = "com.Kruunu.USER.Streak";
+    /** SharedPreferences tag. */
+    static final String DAY = "Day";
+    /** SharedPreferences tag. */
+    static final String CYCLE = "Cycle";
+    TextView pesuaika;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pesu_suoritus);
-
+        pesuAika();
     }
 
     /**
@@ -48,8 +56,58 @@ public class PesuSuoritus extends AppCompatActivity {
         User.getInstance().streakUp();  // streak goes up by 1.
         Log.i("TAG", "Uusi streak:" + User.getInstance().getStreak());
         getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt(STREAK, User.getInstance().getStreak()).apply();  // new streak saved to SharedPreferences.
+        markPesu();
         Intent returnMainMenu = new Intent(this, MainMenu.class);
         startActivity(returnMainMenu);
         finish();
+    }
+
+    public void markPesu () {
+        int d = getSharedPreferences(KEY,Context.MODE_PRIVATE).getInt(DAY, 1);
+        boolean c = getSharedPreferences(KEY, Context.MODE_PRIVATE).getBoolean(CYCLE, true);
+        if (c == true) {
+            if (d == 1) {
+                getSharedPreferences(KEY,Context.MODE_PRIVATE).edit().putInt("Day1", 1).apply();
+            } else if (d == 2) {
+                getSharedPreferences(KEY,Context.MODE_PRIVATE).edit().putInt("Day2", 1).apply();
+            } else if (d == 3) {
+                getSharedPreferences(KEY,Context.MODE_PRIVATE).edit().putInt("Day3", 1).apply();
+            } else if (d == 4) {
+                getSharedPreferences(KEY,Context.MODE_PRIVATE).edit().putInt("Day4", 1).apply();
+            } else if (d == 5) {
+                getSharedPreferences(KEY,Context.MODE_PRIVATE).edit().putInt("Day5", 1).apply();
+            } else if (d == 6) {
+                getSharedPreferences(KEY,Context.MODE_PRIVATE).edit().putInt("Day6", 1).apply();
+            } else if (d == 7) {
+                getSharedPreferences(KEY,Context.MODE_PRIVATE).edit().putInt("Day7", 1).apply();
+            }
+        }
+        else {
+            if (d == 1) {
+                getSharedPreferences(KEY,Context.MODE_PRIVATE).edit().putInt("Night1", 1).apply();
+            } else if (d == 2) {
+                getSharedPreferences(KEY,Context.MODE_PRIVATE).edit().putInt("Night2", 1).apply();
+            } else if (d == 3) {
+                getSharedPreferences(KEY,Context.MODE_PRIVATE).edit().putInt("Night3", 1).apply();
+            } else if (d == 4) {
+                getSharedPreferences(KEY,Context.MODE_PRIVATE).edit().putInt("Night4", 1).apply();
+            } else if (d == 5) {
+                getSharedPreferences(KEY,Context.MODE_PRIVATE).edit().putInt("Night5", 1).apply();
+            } else if (d == 6) {
+                getSharedPreferences(KEY,Context.MODE_PRIVATE).edit().putInt("Night6", 1).apply();
+            } else if (d == 7) {
+                getSharedPreferences(KEY,Context.MODE_PRIVATE).edit().putInt("Night7", 1).apply();
+            }
+        }
+    }
+
+    public void pesuAika () {
+        boolean b = getSharedPreferences(KEY, Context.MODE_PRIVATE).getBoolean(CYCLE, true);
+        pesuaika = findViewById(R.id.textSuoritus2);
+        if(b == true) {
+            pesuaika.setText("Aamupesu tehty!\n Streak kasvaa!\n Merkkaa ylös:");
+        } else {
+            pesuaika.setText("Iltapesu tehty!\n Streak kasvaa!\n Merkkaa ylös:");
+        }
     }
 }
