@@ -58,10 +58,10 @@
         app:layout_constraintBottom_toTopOf="@+id/editPassword"
         app:layout_constraintEnd_toEndOf="@+id/editPassword"
         app:layout_constraintStart_toStartOf="@+id/editPassword"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textSu" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textSu"
         android:layout_width="256dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"

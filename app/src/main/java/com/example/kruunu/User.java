@@ -89,26 +89,18 @@ public class User {
      *
      */
     public void streakMiss () {
-        this.streak = 0;
         this.missed++;
+        if(this.missed >= 2) {
+            this.streak = 0;
+        }
     }
 
     /**
      *
      * @return
      */
-    public int missCheckUp () {
-        int i = this.missed;
+    public void missCheckUp () {
         this.missed = 0;
-        return i;
-    }
-
-    /**
-     *
-     * @param password
-     */
-    public void setPassword (String password) {
-        this.password = password;
     }
 
     /**

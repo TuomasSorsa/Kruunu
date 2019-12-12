@@ -10,6 +10,11 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.EditText;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 /**
  * UserCreation.java is Kruunu's activity used to create user for the app.
  * This app only uses one user, so we have created singleton User class and use the data
@@ -83,6 +88,7 @@ public class UserCreation extends AppCompatActivity {
         String name = editName.getText().toString(); String pincode = editPIN.getText().toString();         // get the inserted data to String format.
         User.getInstance().inputUserDataFirst(name, pincode);   // Input name and PIN from Intent to User singleton (Streak and Misses are default value 0).
         FirstTime();    // First time method.
+        calendarFirstTime(); // Calendar SharedPreferences first time setup method.
         Intent intent = new Intent(this, MainMenu.class);       // Intent to MainMenu.java activity, putExtra USER_NAME & USER_PIN.
         startActivity(intent);
         MainActivity.activityA.finish();    // finish MainActivity.java activity.
@@ -99,5 +105,55 @@ public class UserCreation extends AppCompatActivity {
         getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt(STREAK, User.getInstance().getStreak()).apply();
         getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putString(PIN, User.getInstance().getPassword()).apply();
         getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putBoolean(KEY_IS_FIRST_TIME, false).apply();
+    }
+
+    public void calendarFirstTime () {
+        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt("Day", getWeekDay()).apply();
+        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putBoolean("Cycle", getDayNight()).apply();
+        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt("Day1", 0).apply();
+        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt("Night1", 0).apply();
+        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt("Day2", 0).apply();
+        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt("Night2", 0).apply();
+        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt("Day3", 0).apply();
+        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt("Night3", 0).apply();
+        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt("Day4", 0).apply();
+        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt("Night4", 0).apply();
+        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt("Day5", 0).apply();
+        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt("Night5", 0).apply();
+        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt("Day6", 0).apply();
+        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt("Night6", 0).apply();
+        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt("Day7", 0).apply();
+        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt("Night7", 0).apply();
+    }
+
+    public int getWeekDay () {
+        String weekday = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(System.currentTimeMillis());
+        if(weekday.equals("Monday")) {
+            return 1;
+        } else if (weekday.equals("Tuesday")) {
+            return 2;
+        } else if (weekday.equals("Wednesday")) {
+            return 3;
+        } else if (weekday.equals("Thursday")) {
+            return 4;
+        } else if (weekday.equals("Friday")) {
+            return 5;
+        } else if (weekday.equals("Saturday")) {
+            return 6;
+        } else if (weekday.equals("Sunday")) {
+            return 7;
+        }
+        return 1;
+    }
+
+    public boolean getDayNight () {
+        Calendar rightNow = Calendar.getInstance();
+        int currentHour = rightNow.get(Calendar.HOUR_OF_DAY); // get current hour as int.
+        if (currentHour < 24 && currentHour >= 12) {
+            return false;    // true = morning / day.
+        } else if (currentHour < 12 && currentHour > 0) {
+            return true;  // false = night / evening.
+        }
+        return false;
     }
 }

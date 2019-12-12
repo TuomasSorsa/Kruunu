@@ -4,12 +4,281 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/teethbg"
     tools:context=".KalenteriMenu">
 
-    <CalendarView
-        android:id="@+id/calendarView"
+    <ImageView
+        android:id="@+id/imageMaIlta"
+        android:layout_width="85dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginBottom="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageTiIlta"
+        app:layout_constraintTop_toBottomOf="@+id/imageMaAamu"
+        app:srcCompat="@drawable/checkok" />
+
+    <ImageView
+        android:id="@+id/imageLaIlta"
+        android:layout_width="85dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginBottom="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageSuIlta"
+        app:layout_constraintTop_toBottomOf="@+id/imageLaAamu"
+        app:srcCompat="@drawable/checkok" />
+
+    <ImageView
+        android:id="@+id/imagePeIlta"
+        android:layout_width="85dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginBottom="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageLaIlta"
+        app:layout_constraintTop_toBottomOf="@+id/imagePeAamu"
+        app:srcCompat="@drawable/checkok" />
+
+    <ImageView
+        android:id="@+id/imageToIlta"
+        android:layout_width="85dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginBottom="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imagePeIlta"
+        app:layout_constraintTop_toBottomOf="@+id/imageToAamu"
+        app:srcCompat="@drawable/checkok" />
+
+    <ImageView
+        android:id="@+id/imageKeIlta"
+        android:layout_width="85dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginBottom="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageToIlta"
+        app:layout_constraintTop_toBottomOf="@+id/imageKeAamu"
+        app:srcCompat="@drawable/checkok" />
+
+    <ImageView
+        android:id="@+id/imageTiIlta"
+        android:layout_width="85dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginBottom="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageKeIlta"
+        app:layout_constraintTop_toBottomOf="@+id/imageTiAamu"
+        app:srcCompat="@drawable/checkok" />
+
+    <ImageView
+        android:id="@+id/imageSuIlta"
+        android:layout_width="85dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageSuAamu"
+        app:srcCompat="@drawable/checkok" />
+
+    <TextView
+        android:id="@+id/textKe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="27dp"
-        tools:layout_editor_absoluteY="364dp" />
+        android:layout_marginEnd="47dp"
+        android:layout_marginRight="47dp"
+        android:layout_marginBottom="16dp"
+        android:text="KE"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/textTo" />
+
+    <TextView
+        android:id="@+id/textTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="16dp"
+        android:text="TO"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/textPe" />
+
+    <TextView
+        android:id="@+id/textPe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="47dp"
+        android:layout_marginRight="47dp"
+        android:layout_marginBottom="16dp"
+        android:text="PE"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/textLa" />
+
+    <TextView
+        android:id="@+id/textLa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="16dp"
+        android:text="LA"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/textSu" />
+
+    <TextView
+        android:id="@+id/textSu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="16dp"
+        android:text="SU"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textMa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="131dp"
+        android:layout_marginLeft="131dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginRight="43dp"
+        android:layout_marginBottom="16dp"
+        android:text="MA"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/textTi"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textTi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="56dp"
+        android:layout_marginRight="56dp"
+        android:layout_marginBottom="16dp"
+        android:text="TI"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/textKe" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="134dp" />
+
+    <ImageView
+        android:id="@+id/imageSuAamu"
+        android:layout_width="85dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:srcCompat="@drawable/checkok" />
+
+    <ImageView
+        android:id="@+id/imageToAamu"
+        android:layout_width="85dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/imagePeAamu"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:srcCompat="@drawable/checkok" />
+
+    <ImageView
+        android:id="@+id/imageMaAamu"
+        android:layout_width="85dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/imageTiAamu"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:srcCompat="@drawable/checkok" />
+
+    <ImageView
+        android:id="@+id/imageTiAamu"
+        android:layout_width="85dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        app:layout_constraintEnd_toStartOf="@+id/imageKeAamu"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:srcCompat="@drawable/checkok" />
+
+    <ImageView
+        android:id="@+id/imageKeAamu"
+        android:layout_width="85dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/imageToAamu"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:srcCompat="@drawable/checkok" />
+
+    <ImageView
+        android:id="@+id/imagePeAamu"
+        android:layout_width="85dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/imageLaAamu"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:srcCompat="@drawable/checkok" />
+
+    <ImageView
+        android:id="@+id/imageLaAamu"
+        android:layout_width="85dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        app:layout_constraintEnd_toStartOf="@+id/imageSuAamu"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:srcCompat="@drawable/checkok" />
+
+    <ImageView
+        android:id="@+id/imageAamu"
+        android:layout_width="81dp"
+        android:layout_height="87dp"
+        android:layout_marginTop="144dp"
+        android:layout_marginEnd="648dp"
+        android:layout_marginRight="648dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/aamu" />
+
+    <ImageView
+        android:id="@+id/imageIlta"
+        android:layout_width="81dp"
+        android:layout_height="87dp"
+        android:layout_marginTop="272dp"
+        android:layout_marginEnd="648dp"
+        android:layout_marginRight="648dp"
+        android:layout_marginBottom="52dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ilta" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,7 +14,8 @@
         <activity android:name=".UserCreation" />
         <activity android:name=".InfoMenu" />
         <activity android:name=".OptionsMenu" />
-        <activity android:name=".KalenteriMenu" />
+        <activity android:name=".KalenteriMenu"
+            android:screenOrientation="sensorLandscape" />
         <activity
             android:name=".PesuMenu"
             android:screenOrientation="sensorLandscape" />

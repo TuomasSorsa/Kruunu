@@ -2,12 +2,16 @@ package com.example.kruunu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import java.util.Calendar;
 
 /**
  * MainMenu.java is Kruunu's MainMenu where all the app's functions & menus are accessible.
@@ -40,7 +44,8 @@ public class MainMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         Log.d("TAG", "Luotiinko uusi objekti?");
-        LoadTime();     // Load data method.
+        loadTime();     // Load data method.
+        setAlarm();
     }
 
     /**
@@ -49,15 +54,20 @@ public class MainMenu extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("TAG", "Luotiinko uusi objekti?");
-        LoadTime();
+        Log.d("TAG", "Palattiin aktiviteettiin.");
+        loadTime();
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 
     /**
      * Opens KalenteriMenu activity.
      * @param v Used for button onClick.
      */
-    public void KalenteriButton (View v) {
+    public void kalenteriButton (View v) {
         Intent kalenteri = new Intent(this, KalenteriMenu.class);
         startActivity(kalenteri);
     }
@@ -66,7 +76,7 @@ public class MainMenu extends AppCompatActivity {
      * Opens OptionsMenu activity.
      * @param v Used for button onClick.
      */
-    public void OptionsButton (View v) {
+    public void optionsButton (View v) {
         Intent options = new Intent(this, OptionsMenu.class);
         startActivity(options);
     }
@@ -75,7 +85,7 @@ public class MainMenu extends AppCompatActivity {
      * Opens PesuMenu activity.
      * @param v Used for button onClick.
      */
-    public void PesuButton (View v) {
+    public void pesuButton (View v) {
         Intent pesu = new Intent(this, PesuMenu.class);
         startActivity(pesu);
     }
@@ -84,30 +94,34 @@ public class MainMenu extends AppCompatActivity {
      * Opens OhjeMenu activity.
      * @param v Used for button onClick.
      */
-    public void OhjeButton (View v) {
+    public void ohjeButton (View v) {
         Intent ohje = new Intent(this, InfoMenu.class);
         startActivity(ohje);
     }
-
-    /**
-     * Stores the current Userdata from User singleton to SharedPreferences.
-     * Stores KEY_IS_FIRST_TIME as false, to skip first time setup next time.
-     * Used when using the app first time.
-     * TextView testaako used for testing / debugging.
-     */
-
 
     /**
      * Loads Userdata from SharedPreferences and inputs it to User singleton.
      * Used when the app has already completed the first time setup.
      * TextView testaako used for testing / debugging.
      */
-    public void LoadTime () {
+    public void loadTime () {
         User.getInstance().inputUserDataLoad(getSharedPreferences(KEY, Context.MODE_PRIVATE).getString(NAME,""),    // load userdata from SharedPreferences to User singleton.
                 getSharedPreferences(KEY, Context.MODE_PRIVATE).getString(PIN,"1234"),
                 getSharedPreferences(KEY, Context.MODE_PRIVATE).getInt(STREAK,0),
                 getSharedPreferences(KEY, Context.MODE_PRIVATE).getInt(MISSES,0));
+    }
+
+    public void setAlarm () {
+        Calendar cal1 = Calendar.getInstance();
+        cal1.set(Calendar.SECOND, 20);
+        Intent alarm = new Intent(MainMenu.this, BrushAlarm.class);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this.getApplicationContext(), 12345678, alarm, PendingIntent.FLAG_UPDATE_CURRENT);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal1.getTimeInMillis(), 1000 * 60, pendingIntent);
+    }
+
+    public void setStreak () {
         testaako = findViewById(R.id.testiView);
-        //testaako.setText(User.getInstance().getName() + "\n" + User.getInstance().getPassword() + "\n" +User.getInstance().getStreak() + "\n" + User.getInstance().getMissed());
+        testaako.setText("Streak: " + User.getInstance().getStreak());
     }
 }
