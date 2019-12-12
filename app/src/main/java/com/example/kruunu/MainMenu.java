@@ -2,6 +2,7 @@ package com.example.kruunu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,7 +32,7 @@ public class MainMenu extends AppCompatActivity {
     static final String MISSES = "com.Kruunu.USER.Misses";
     /** TextView testaako used for testing / debugging. */
     TextView testaako;
-
+    static Activity activityB;
     /**
      * Userdata is loaded from SharedPreferences and inputted to User.java singleton.
      */
@@ -109,5 +110,8 @@ public class MainMenu extends AppCompatActivity {
                 getSharedPreferences(KEY, Context.MODE_PRIVATE).getInt(MISSES,0));
         testaako = findViewById(R.id.testiView);
         //testaako.setText(User.getInstance().getName() + "\n" + User.getInstance().getPassword() + "\n" +User.getInstance().getStreak() + "\n" + User.getInstance().getMissed());
+    }
+    public static Activity getInstance(){ // Method says it's never used, but this let's you use MainActivity.activityA.finish in other activities();
+        return activityB;
     }
 }

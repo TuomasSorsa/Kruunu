@@ -5,6 +5,8 @@
     android:padding="10dp">
 
     <EditText
+        android:digits="abcdefghijklmnopqrstuvwxyzäöåABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÅ"
+        android:maxLength="15"
         android:layout_gravity="center"
         android:id="@+id/editName"
         android:layout_width="match_parent"

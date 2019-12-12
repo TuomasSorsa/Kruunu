@@ -2,6 +2,7 @@ package com.example.kruunu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.VoiceInteractor;
@@ -17,12 +18,7 @@ import android.widget.Toast;
 
 public class DelUserInfoActivity extends AppCompatActivity {
     static final String KEY = "com.Kruunu";
-    static final String NAME = "com.Kruunu.User.Name";
-    static final String PIN = "com.Kruunu.User,PIN";
-    static final String STREAK = "com.Kruunu.USER.Streak";
-    static final String MISSES = "com.Kruunu.USER.Misses";
-    static final String KEY_IS_FIRST_TIME = "com.Kruunu.first_time";
-
+    static Activity activityD;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,23 +39,22 @@ public class DelUserInfoActivity extends AppCompatActivity {
 
 
 
-        mBuilder.setView(mView);
+            mBuilder.setView(mView);
             final AlertDialog dialog = mBuilder.create();
             dialog.show();
             mYes.setOnClickListener (new View.OnClickListener(){
             @Override
                 public void onClick(View v){
-                getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putString(NAME, User.getInstance().getName()).clear().apply();
-                getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt(MISSES, User.getInstance().getMissed()).clear().apply();
-                getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt(STREAK, User.getInstance().getStreak()).clear().apply();
-                getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putString(PIN, User.getInstance().getPassword()).clear().apply();
-                getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putBoolean(KEY_IS_FIRST_TIME, false).clear().apply();
-             //  SharedPreferences.Editor.clear();
-                dialog.hide();
-                Intent userCreation = new Intent(DelUserInfoActivity.this, UserCreation.class);
-                startActivity(userCreation);
+                SharedPreferences settings = getSharedPreferences(KEY, Context.MODE_PRIVATE);
+                settings.edit().clear().commit();
+                dialog.dismiss();
+                Intent i = new Intent(DelUserInfoActivity.this,MainActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(i);
+                /*Intent userCreation = new Intent(this, MainActivity.class);
+                startActivity(userCreation);*/
             }
-
             });
 
             }
@@ -100,5 +95,8 @@ public class DelUserInfoActivity extends AppCompatActivity {
     public void enHalua(View view){
         Intent previousActivity = new Intent(DelUserInfoActivity.this, OptionsMenu.class);
         startActivity(previousActivity);
+    }
+    public static Activity getInstance(){ // Method says it's never used, but this let's you use MainActivity.activityA.finish in other activities();
+        return activityD;
     }
 }

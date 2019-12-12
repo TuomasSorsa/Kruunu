@@ -2,6 +2,7 @@ package com.example.kruunu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,7 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class OptionsMenu extends AppCompatActivity {
-
+    static Activity activityC;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,5 +46,8 @@ public class OptionsMenu extends AppCompatActivity {
                 startActivity(nextActivity);*/
             }
         });
+    }
+    public static Activity getInstance(){ // Method says it's never used, but this let's you use MainActivity.activityA.finish in other activities();
+        return activityC;
     }
 }

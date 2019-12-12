@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,18 +47,20 @@ public class ChangeNameActivity extends AppCompatActivity {
                     EditText editName = findViewById(R.id.editName);
                     @Override
                     public void onClick(View v){
-
+                        /*int length = editName.length();
+                        if(length < 3){
+                            return;
+                        }*/
                         String name = editName.getText().toString();
+                        User.getInstance().changeName(name);
+                        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putString(NAME, User.getInstance().getName()).apply();
+                        Log.d("TAG", "Current name: " + User.getInstance().getName());
                         Intent intent = new Intent(ChangeNameActivity.this, OptionsMenu.class);       // Intent to MainMenu.java activity, putExtra USER_NAME & USER_PIN.
                         startActivity(intent);
-                        MainActivity.activityA.finish();    // finish MainActivity.java activity.
                         finish();
                     }
                         //User.getInstance().inputUserDataFirst(name);
-
-
                 });
-
             }
         });
 
