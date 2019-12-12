@@ -12,8 +12,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class ChangeNameActivity extends AppCompatActivity {
+    /** SharedPreferences tag. */
     static final String KEY = "com.Kruunu";
+    /** SharedPreferences tag. */
     static final String NAME = "com.Kruunu.User.Name";
+    /** TextView nimi used for findView*/
     TextView nimi;
 
 
@@ -27,6 +30,11 @@ public class ChangeNameActivity extends AppCompatActivity {
         nimi = findViewById(R.id.userNimi);
         nimi.setText(User.getInstance().getName());
     }
+
+    /**
+     * changeName is used to change userName
+     * @param v the view within button was click
+     */
     public void changeName (View v) {
         EditText editName = findViewById(R.id.editName);
         int length = editName.length();     // inputted username length

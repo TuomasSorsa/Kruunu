@@ -11,7 +11,6 @@ public class Singleton {
 
     private Singleton() {
         asetukset = new ArrayList<Asetukset>();
-        asetukset.add(new Asetukset("Vaihda fontti"));
         asetukset.add(new Asetukset("Vaihda nimi"));
         asetukset.add(new Asetukset("Poista tiedot"));
     }
