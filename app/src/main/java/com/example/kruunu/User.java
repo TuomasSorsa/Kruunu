@@ -86,7 +86,7 @@ public class User {
     }
 
     /**
-     *
+     * User missed go up by one and if user has missed twice or more this week, Streak resets.
      */
     public void streakMiss () {
         this.missed++;
@@ -96,8 +96,7 @@ public class User {
     }
 
     /**
-     *
-     * @return
+     * Used to reset user's weekly misses after every Sunday night alarm.
      */
     public void missCheckUp () {
         this.missed = 0;

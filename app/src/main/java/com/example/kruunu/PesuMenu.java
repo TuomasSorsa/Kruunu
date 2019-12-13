@@ -49,7 +49,7 @@ public class  PesuMenu extends AppCompatActivity {
             }
         });
     }
-
+    // all below is unused MediaPlayer code for scrapped mp3.player (replaced by video).
     /*@Override
     protected void onPause() {
         super.onPause();
