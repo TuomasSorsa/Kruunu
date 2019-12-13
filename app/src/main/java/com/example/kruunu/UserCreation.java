@@ -54,7 +54,9 @@ public class UserCreation extends AppCompatActivity {
      * Checks the name and PIN user inputted to name & PIN EditText are valid.
      * If either Username or PIN are invalid; user gets a AlertDialog, describing what went wrong.
      * When both Username and PIN are valid; KEY_IS_FIRST_TIME is stored as 'false' to SharedPreferences.
-     * All the Userdata is also stored in SharedPreferences.
+     * All the Userdata, day/night data and  is also stored in SharedPreferences.
+     *
+     * Stores week calendar data & day/night cycle data. Also stores starting weekday.
      * Finishes MainActivity & UserCreation activities.
      * XML EditTexts have maxLength values and take only specific digits (name: letters, PIN: numbers).
      *
@@ -107,10 +109,16 @@ public class UserCreation extends AppCompatActivity {
         getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putBoolean(KEY_IS_FIRST_TIME, false).apply();
     }
 
+    /**
+     *  Used to store default values to Day & Night values also current weekday and morning/night cycle value to SharedPreferences.
+     *  Calendar starts from current weekday and morning/night cycle value example. Night 5.
+     *  So if you start using the app middle of the week, you don't get unnecessary misses to your Userdata.
+     *  Cycle: true = day, false = night. Day/Night1-7: 0 = not brushed yet, 1 = brushed, 2 = missed brushing.
+     */
     public void calendarFirstTime () {
-        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt("Day", getWeekDay()).apply();
-        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putBoolean("Cycle", getDayNight()).apply();
-        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt("Day1", 0).apply();
+        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt("Day", getWeekDay()).apply(); // weekday as int (example. Tuesday = 2)
+        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putBoolean("Cycle", getDayNight()).apply(); // true = Day & false = Night
+        getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt("Day1", 0).apply();   // Every day and night for each day has a SharedPreferences value.
         getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt("Night1", 0).apply();
         getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt("Day2", 0).apply();
         getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt("Night2", 0).apply();
@@ -126,9 +134,13 @@ public class UserCreation extends AppCompatActivity {
         getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt("Night7", 0).apply();
     }
 
+    /**
+     * Gets the current weekday as String and converts it to int value between 1-7.
+     * @return Returns current weekday as 1 (should never happen).
+     */
     public int getWeekDay () {
         String weekday = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(System.currentTimeMillis());
-        if(weekday.equals("Monday")) {
+        if(weekday.equals("Monday")) {  // change string to int
             return 1;
         } else if (weekday.equals("Tuesday")) {
             return 2;
@@ -146,6 +158,11 @@ public class UserCreation extends AppCompatActivity {
         return 1;
     }
 
+    /**
+     * Gets the current day/night cycle value as boolean.
+     * If clock is between 0-12 = day or 12-24 = night.
+     * @return Returns false (should never happen).
+     */
     public boolean getDayNight () {
         Calendar rightNow = Calendar.getInstance();
         int currentHour = rightNow.get(Calendar.HOUR_OF_DAY); // get current hour as int.

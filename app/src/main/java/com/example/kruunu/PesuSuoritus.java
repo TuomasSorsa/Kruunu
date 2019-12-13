@@ -56,12 +56,18 @@ public class PesuSuoritus extends AppCompatActivity {
         User.getInstance().streakUp();  // streak goes up by 1.
         Log.i("TAG", "Uusi streak:" + User.getInstance().getStreak());
         getSharedPreferences(KEY, Context.MODE_PRIVATE).edit().putInt(STREAK, User.getInstance().getStreak()).apply();  // new streak saved to SharedPreferences.
-        markPesu();
+        markPesu(); // marks the brushing complete
         Intent returnMainMenu = new Intent(this, MainMenu.class);
         startActivity(returnMainMenu);
         finish();
     }
 
+    /**
+     * Used to find out which weekday & day/night cycle is it to save the brushing value as 1 (Brushed);
+     * Activates after confirmation button has been pressed.
+     * Checks boolean day/night cycle value and after that weekday number.
+     * Saves brushing as complete for the current day & cycle.
+     */
     public void markPesu () {
         int d = getSharedPreferences(KEY,Context.MODE_PRIVATE).getInt(DAY, 1);
         boolean c = getSharedPreferences(KEY, Context.MODE_PRIVATE).getBoolean(CYCLE, true);
@@ -101,13 +107,16 @@ public class PesuSuoritus extends AppCompatActivity {
         }
     }
 
+    /**
+     * Sets TextView show if it's day or night and displays correct String based off it.
+     */
     public void pesuAika () {
         boolean b = getSharedPreferences(KEY, Context.MODE_PRIVATE).getBoolean(CYCLE, true);
         pesuaika = findViewById(R.id.textSuoritus2);
-        if(b == true) {
-            pesuaika.setText("Aamupesu tehty!\n Streak kasvaa!\n Merkkaa ylös:");
+        if(b == true) { // checks day/night cycle.
+            pesuaika.setText("Aamupesu tehty!\n Streak kasvaa!\n Merkkaa ylös:"); // day
         } else {
-            pesuaika.setText("Iltapesu tehty!\n Streak kasvaa!\n Merkkaa ylös:");
+            pesuaika.setText("Iltapesu tehty!\n Streak kasvaa!\n Merkkaa ylös:"); // night
         }
     }
 }

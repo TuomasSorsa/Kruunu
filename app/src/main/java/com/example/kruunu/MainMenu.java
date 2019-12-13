@@ -69,6 +69,10 @@ public class MainMenu extends AppCompatActivity {
         setStreakImage();
     }
 
+    /**
+     * On back button press: moves the activity to background.
+     * Making sure that alarm keeps running in background.
+     */
     @Override
     public void onBackPressed() {
         moveTaskToBack(true);
@@ -85,6 +89,7 @@ public class MainMenu extends AppCompatActivity {
 
     /**
      * Opens OptionsMenu activity.
+     * Options didn't make it in time.
      * @param v Used for button onClick.
      */
     /*public void optionsButton (View v) {
@@ -131,20 +136,36 @@ public class MainMenu extends AppCompatActivity {
                 getSharedPreferences(KEY, Context.MODE_PRIVATE).getInt(MISSES,0));
     }
 
+    /**
+     * Used to set alarm for every 12 hours (12AM & 12PM)
+     * Creates calendar that sets alarm time to 12:00:00, this alarm happens twice a day.
+     * AlarmManager sets up that alarm, PendingIntent to BrushAlarm.java class.
+     * setRepeating rings alarm twice a day, using the time set to the calendar (12:00 & 24:00).
+     * RTC_WAKEUP uses phone's clock.
+     */
     public void setAlarm () {
-        Calendar cal1 = Calendar.getInstance();
-        cal1.set(Calendar.SECOND, 20);
-        Intent alarm = new Intent(MainMenu.this, BrushAlarm.class);
+        Calendar cal1 = Calendar.getInstance(); // gets Calender object
+        cal1.set(Calendar.HOUR,12);     // Sets alarm times
+        cal1.set(Calendar.MINUTE, 0);
+        cal1.set(Calendar.SECOND, 0);
+        Intent alarm = new Intent(MainMenu.this, BrushAlarm.class);     // intent to BrushAlarm activity.
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this.getApplicationContext(), 12345678, alarm, PendingIntent.FLAG_UPDATE_CURRENT);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal1.getTimeInMillis(), 1000 * 60, pendingIntent);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this.getApplicationContext(), 12345678, alarm, PendingIntent.FLAG_UPDATE_CURRENT); // pending intent to BrushAlarm activity.
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal1.getTimeInMillis(), AlarmManager.INTERVAL_HALF_DAY, pendingIntent); // alarm every 12 hours, compares phone clock and calendar time setted.
     }
 
+    /**
+     * Used to check if user brushed their teeth already today day/night.
+     * Boolean c check the day/night cycle & Int d check weekday number.
+     * If user has brushed their teeth (true), AlarmDialog prevents them from entering
+     * PesuMenu until day or day/night cycle changes.
+     * @return
+     */
     public boolean checkBrush () {
-        int d = getSharedPreferences(KEY,Context.MODE_PRIVATE).getInt(DAY, 1);
-        boolean c = getSharedPreferences(KEY, Context.MODE_PRIVATE).getBoolean(CYCLE, true);
-        if (c == true) {
-            if (d == 1) {
+        int d = getSharedPreferences(KEY,Context.MODE_PRIVATE).getInt(DAY, 1);  // day/night cycle as boolean
+        boolean c = getSharedPreferences(KEY, Context.MODE_PRIVATE).getBoolean(CYCLE, true);    // weekday as number
+        if (c == true) {    // if it's day/morning in the cycle
+            if (d == 1) {   // checks every weekday in a row
                 if(getSharedPreferences(KEY,Context.MODE_PRIVATE).getInt("Day1", 0) == 1) {
                     return true;
                 } else {
@@ -187,8 +208,8 @@ public class MainMenu extends AppCompatActivity {
                     return false;
                 }
             }
-        } else {
-            if (d == 1) {
+        } else {                // if it's night/evening in the cycle
+            if (d == 1) {       // checks every weekday in a row
                 if(getSharedPreferences(KEY,Context.MODE_PRIVATE).getInt("Night1", 0) == 1) {
                     return true;
                 } else {
@@ -235,16 +256,25 @@ public class MainMenu extends AppCompatActivity {
         return false;
     }
 
+    /**
+     * Sets the current streak to TextView.
+     * Used to display User's current streak.
+     */
     public void setStreak () {
         testaako = findViewById(R.id.testiView);
         testaako.setText("Streak: " + User.getInstance().getStreak());
     }
 
+    /**
+     * Sets ImageView to display image based off User's streak.
+     * If User has two or more misses in current week, ImageView displays negative pictures / badges.
+     * Else ImageVIew displays positive images / badges based off User's streak value.
+     */
     public void setStreakImage () {
         ImageView streak = findViewById(R.id.imageView);
-        int v = User.getInstance().getStreak();
-        int m = User.getInstance().getMissed();
-        if(m >= 2) {
+        int v = User.getInstance().getStreak(); // User's this.streak
+        int m = User.getInstance().getMissed(); // User's this.misses
+        if(m >= 2) {    // if two or more misses, display image based off misses value.
             if(m > 4) {
                 streak.setImageResource(R.drawable.missed5);
             } else if (m == 4) {
@@ -254,7 +284,7 @@ public class MainMenu extends AppCompatActivity {
             } else if (m == 2) {
                 streak.setImageResource(R.drawable.missed2);
             }
-        } else {
+        } else {       // display image based off streak value.
             if(v > 4) {
                 streak.setImageResource(R.drawable.streak5);
             } else if (v > 2) {
