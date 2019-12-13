@@ -87,10 +87,10 @@ public class MainMenu extends AppCompatActivity {
      * Opens OptionsMenu activity.
      * @param v Used for button onClick.
      */
-    public void optionsButton (View v) {
+    /*public void optionsButton (View v) {
         Intent options = new Intent(this, OptionsMenu.class);
         startActivity(options);
-    }
+    }*/
 
     /**
      * Opens PesuMenu activity.
