@@ -11,6 +11,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+/**
+ * ChangeNameActivity.java is used to change users username
+ * * @author Vertti Huovila
+ *  * @version 1.01
+ *  * @since 12.12.2019
+ */
+
 public class ChangeNameActivity extends AppCompatActivity {
     /** SharedPreferences tag. */
     static final String KEY = "com.Kruunu";

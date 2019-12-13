@@ -17,6 +17,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * DelUserActivity.java is used to delete userInformation
+ * * @author Vertti Huovila
+ *  * @version 1.01
+ *  * @since 12.12.2019
+ */
 public class DelUserInfoActivity extends AppCompatActivity {
     static final String KEY = "com.Kruunu";
     static Activity activityD;
