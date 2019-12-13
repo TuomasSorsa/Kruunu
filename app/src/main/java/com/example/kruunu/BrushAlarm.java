@@ -12,6 +12,20 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * MainMenu alarm BroadcastReceiver used check current day & cycle brushing.
+ * First checks if cycle is day or night and after that checks through every weekday.
+ * Day/Night cycle will be changed and if it's night the weekday will go up by one. (Monday becomes Tuesday).
+ * If day is correct and that day/night brushing value is 0 (not brushed yet), it will
+ * be marked as 2 (missed brushing) also user's misses value will rise and might reset streak.
+ * If user has brushed in time (before the alarm 12am/12pm), only weekday & cycle will change. (Time will go forward).
+ * At day 7 night; user misses are reset to zero, night7 brushing is checked and marked up if necessary,
+ * and every weekday day/night values will reset to 0.  (not brushed yet) starting a brand new week.
+ *
+ * @author Tuomas Sihvo
+ * @version 1.0
+ * @since 13.12.2019
+ */
 public class BrushAlarm extends BroadcastReceiver {
     /** SharedPreferences tag. */
     static final String KEY = "com.Kruunu";
@@ -26,14 +40,9 @@ public class BrushAlarm extends BroadcastReceiver {
 
     @Override
     /**
-     * MainMenu alarm BroadcastReceiver used check current day & cycle brushing.
-     * First checks if cycle is day or night and after that checks through every weekday.
-     * Day/Night cycle will be changed and if it's night the weekday will go up by one. (Monday becomes Tuesday).
-     * If day is correct and that day/night brushing value is 0 (not brushed yet), it will
-     * be marked as 2 (missed brushing) also user's misses value will rise and might reset streak.
-     * If user has brushed in time (before the alarm 12am/12pm), only weekday & cycle will change. (Time will go forward).
-     * At day 7 night; user misses are reset to zero, night7 brushing is checked and marked up if necessary,
-     * and every weekday day/night values will reset to 0.  (not brushed yet) starting a brand new week.
+     * onReceive starts the moment alarm triggers.
+     * Checks the current day/night cycle and checks the current day/night brushing values.
+     * Cycle and weekday are changed before the checkup.
      */
     public void onReceive(Context context, Intent intent) {
         SharedPreferences sharedPref = context.getSharedPreferences(KEY, Context.MODE_PRIVATE);

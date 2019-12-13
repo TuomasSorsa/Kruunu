@@ -13,6 +13,10 @@ import android.widget.ImageView;
  * Every image before morning & night alarm is displayed as "THINKING EMOJI" image.
  * Example. If user brushed teeth in time in Monday morning; the monday morning image is
  * displayed as "OK" image.
+ *
+ * @author Tuomas Sihvo
+ * @version 1.0
+ * @since 13.12.2019
  */
 public class KalenteriMenu extends AppCompatActivity {
     /** SharedPreferences tag. */
