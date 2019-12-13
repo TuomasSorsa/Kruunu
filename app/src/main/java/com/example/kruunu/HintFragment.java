@@ -13,10 +13,17 @@ import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
+ * @author Jan-Mikael Martin
+ * @version 4.20
+ * @since 12.12.2019
  */
 public class HintFragment extends Fragment {
-
+    /** textView*/
     private TextView textView;
+
+    /**
+     * Empty public constructor
+     */
     public HintFragment() {
         // Required empty public constructor
     }
