@@ -30,7 +30,9 @@ public class InfoMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_menu);
         viewPager = findViewById(R.id.pager);
-        adapter = new HintFragmentCollectionAdapter(getSupportFragmentManager()); // Gets Frag
+        adapter = new HintFragmentCollectionAdapter(getSupportFragmentManager()); // Gets the FragmentManager for interaction.
+
+
         viewPager.setAdapter(adapter);
     }
 }
