@@ -10,18 +10,34 @@ package com.example.kruunu;
  */
 
 public class Hint {
-
+    /** Hint object's title String*/
     private String title;
+    /** Hint object's hint content String */
     private String content;
 
+    /**
+     *  Constructor for Hint class.
+     *
+     * @param title Hint's title.
+     * @param content Content of hint.
+     */
     public Hint (String title, String content) {
         this.title = title;
         this.content = content;
     }
 
+    /**
+     *  Returns Hint object's title.
+     * @return Hint title
+     */
     public String getTitle() {
         return this.title;
     }
+
+    /**
+     * Returns Hint object's content String.
+     * @return Hint content
+     */
 
     public String getContent() {
         return this.content;

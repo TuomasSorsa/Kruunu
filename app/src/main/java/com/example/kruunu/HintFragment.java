@@ -28,6 +28,11 @@ public class HintFragment extends Fragment {
         // Required empty public constructor
     }
 
+    /**
+     * This is the textView fragment for viewPager.
+     * Gets the current String from Bundle that is set in HintFragmentCollectionAdapter.
+     * @return fragment_hint layout view
+     */
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
